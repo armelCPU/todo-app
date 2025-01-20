@@ -1,0 +1,28 @@
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: aliceblue;
+    color: black;
+    padding: 5px 10px;
+    margin: 5px 0;
+    border-radius: 3px;
+}
+
+.item img {
+    width: 30px;
+}
+
+.item input {
+    height: 100%;
+    padding: 5px 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    background-color: aliceblue;
+    border: none;
+}
+
+.item-hover {
+    background-color: aquamarine;
+}
