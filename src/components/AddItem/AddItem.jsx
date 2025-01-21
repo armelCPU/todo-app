@@ -16,7 +16,7 @@ export default function AddItem({ addItem }) {
   }
   return (
     <form action="" className='add-form' onSubmit={handleSubmit}>
-        <label htmlFor="name" id='label' className='form-input'>Ajouter une chose à faire</label>
+        <label htmlFor="name" id='label' className='form-input'>Ajouter quelque chose à faire</label>
         <input 
             className='add-input form-input'
             id="name"

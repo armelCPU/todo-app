@@ -1,0 +1,42 @@
+.modal-layout{
+    
+}
+
+.modal-container {
+    position: absolute;
+    top: 33vh;
+    left: 33%;
+    border: 1px;
+    border-radius: 5px;
+    background-color: azure;
+    color: black;
+    padding: 20px;
+}
+
+.close-block {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.modal-body {
+    text-align: center;
+}
+
+.close-block img {
+    width: 20px;
+}
+
+.confirm-buttons {
+    max-width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.confirm-buttons button {
+    margin: 5px 0;
+    border-radius: 5px;
+    width: 100%;
+    padding: 8px 0;
+}

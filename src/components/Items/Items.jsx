@@ -2,7 +2,7 @@ import React from 'react'
 import Item from '../Item/Item'
 import "./Items.css"
 
-export default function Items({ items, onDelete, onUpdate, filterValue, onFilter, setFilterValue}) {
+export default function Items({ items, onUpdate, filterValue, onFilter, setFilterValue, setShowDeleteModal, showDeleteModal, setIdToDelete}) {
   function handleFilter(e) {
     setFilterValue(e.target.value)
     onFilter(e.target.value)
@@ -24,8 +24,10 @@ export default function Items({ items, onDelete, onUpdate, filterValue, onFilter
             items.map((item) => {
             return <Item
                 item={item}
-                onDelete={onDelete}
                 onUpdate={onUpdate}
+                setShowDeleteModal={setShowDeleteModal}
+                showDeleteModal={showDeleteModal}
+                setIdToDelete={setIdToDelete}
                 key={item.id}
             />
             })

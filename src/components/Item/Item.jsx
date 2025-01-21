@@ -3,7 +3,7 @@ import "./Item.css"
 import DeleteImg from "../../assets/delete.png"
 import { useState } from 'react'
 
-export default function Item( {item, onDelete, onUpdate} ) {
+export default function Item( {item, onUpdate, showDeleteModal, setShowDeleteModal, setIdToDelete} ) {
   const [editing, setEditing] = useState(false)
 
   const itemRef = React.useRef(null);
@@ -22,6 +22,11 @@ export default function Item( {item, onDelete, onUpdate} ) {
     setEditing(false)
   }
 
+  function handleOnDelete() {
+    setIdToDelete(() => item.id)
+    setShowDeleteModal(() => !showDeleteModal)
+  }
+
   return (
     <div 
         className="item" ref={itemRef} 
@@ -37,7 +42,7 @@ export default function Item( {item, onDelete, onUpdate} ) {
         />
         <img 
             src={DeleteImg} alt="delete item" 
-            onClick={() => onDelete(item.id)}
+            onClick={handleOnDelete}
         />
     </div>
   )

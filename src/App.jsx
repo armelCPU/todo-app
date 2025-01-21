@@ -2,7 +2,9 @@ import { useState } from 'react'
 import AddItem from './components/AddItem/AddItem'
 import './App.css'
 import Items from './components/Items/Items'
+import DeleteModal from "./modals/DeleteModal/DeleteModal"
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 
 const DATA = [
   {id: 1, name: "Build Docker"},
@@ -13,6 +15,8 @@ function App() {
   const [items, setItems] = useState([])
   const [allitems, setAllItems] = useState([...DATA])
   const [filterValue, setFilterValue] = useState("")
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [idToDelete, setIdToDelete] = useState("")
 
   const onDelete = (id) => {
     const newItems = allitems.filter( item => item.id !== id);
@@ -49,7 +53,7 @@ function App() {
   const onFilter = (searchTerm) => {
     const itemCopy = [...allitems]
     const filteredItems = itemCopy.filter(item => {
-      if (item.name.toLocaleLowerCase().indexOf(searchTerm) !== -1) {
+      if (item.name.toLocaleLowerCase().indexOf(searchTerm.toLocaleLowerCase()) !== -1) {
         return item
       }
     })
@@ -60,6 +64,7 @@ function App() {
     setItems([... allitems])
   }, [])
 
+
   return (
     <div className="container">
       <h1>Ma TODO Liste</h1>
@@ -68,12 +73,23 @@ function App() {
       />
       <Items 
         items={items}
-        onDelete={onDelete}
         onUpdate={updateItem}
         onFilter={onFilter}
         filterValue={filterValue}
         setFilterValue={setFilterValue}
+        setShowDeleteModal={setShowDeleteModal}
+        showDeleteModal={showDeleteModal}
+        setIdToDelete={setIdToDelete}
       />
+
+      { showDeleteModal && createPortal(
+        <DeleteModal
+          itemId={idToDelete}
+          onDelete={onDelete}
+          setShowDeleteModal={setShowDeleteModal}
+        />,
+        document.body)
+      }
     </div>
   )
 }
