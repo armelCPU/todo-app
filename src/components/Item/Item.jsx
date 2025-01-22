@@ -1,15 +1,24 @@
 import React from 'react'
 import "./Item.css"
 import DeleteImg from "../../assets/delete.png"
-import { useState } from 'react'
+import {ItemsContext} from "../../contexts/ItemsContext"
+import { useState, useContext } from 'react'
 
-export default function Item( {item, onUpdate, showDeleteModal, setShowDeleteModal, setIdToDelete} ) {
+export default function Item( {item} ) {
   const [editing, setEditing] = useState(false)
+
+  const {
+    updateItem, 
+    showDeleteModal,
+    setShowDeleteModal,
+    setIdToDelete 
+  } = useContext(ItemsContext);
+
 
   const itemRef = React.useRef(null);
 
   const handleOnchange = (id, e) => {
-    onUpdate(id, e.target.value)
+    updateItem(id, e.target.value)
   }
 
   const handleOnMouseEnter = () => {

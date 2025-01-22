@@ -1,8 +1,24 @@
 import React from 'react'
 import Item from '../Item/Item'
 import "./Items.css"
+import { useContext, useEffect } from 'react'
+import {ItemsContext} from "../../contexts/ItemsContext"
 
-export default function Items({ items, onUpdate, filterValue, onFilter, setFilterValue, setShowDeleteModal, showDeleteModal, setIdToDelete}) {
+
+export default function Items() {
+  useEffect( () => {
+    setItems([... allItems])
+  }, [])
+
+  const {
+    items, 
+    allItems,
+    setItems,
+    onFilter,
+    filterValue, 
+    setFilterValue, 
+  } = useContext(ItemsContext);
+
   function handleFilter(e) {
     setFilterValue(e.target.value)
     onFilter(e.target.value)
@@ -24,10 +40,6 @@ export default function Items({ items, onUpdate, filterValue, onFilter, setFilte
             items.map((item) => {
             return <Item
                 item={item}
-                onUpdate={onUpdate}
-                setShowDeleteModal={setShowDeleteModal}
-                showDeleteModal={showDeleteModal}
-                setIdToDelete={setIdToDelete}
                 key={item.id}
             />
             })

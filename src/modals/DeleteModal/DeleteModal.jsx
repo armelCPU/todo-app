@@ -1,11 +1,19 @@
 import React from 'react'
 import "../modals.css"
 import closeIcon from "../../assets/close.png"
+import {ItemsContext} from "../../contexts/ItemsContext"
+import { useContext } from 'react'
 
-export default function DeleteModal({itemId, onDelete, setShowDeleteModal}) {
+export default function DeleteModal() {
+
+  const {
+    idToDelete, 
+    onDelete,
+    setShowDeleteModal, 
+  } = useContext(ItemsContext);
 
   function handleDelete() {
-    onDelete(itemId)
+    onDelete(idToDelete)
     setShowDeleteModal(false)
   }
   
@@ -19,7 +27,7 @@ export default function DeleteModal({itemId, onDelete, setShowDeleteModal}) {
             />
         </div>
         <div className='modal-body'>
-            <p>{`Voulez-vous vraiment supprimer l'élement d'ID ${itemId}` }</p>
+            <p>{`Voulez-vous vraiment supprimer l'élement d'ID ${idToDelete}` }</p>
         </div>
         <div className="confirm-buttons">
             <button onClick={ () => setShowDeleteModal(false)}>

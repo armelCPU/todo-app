@@ -1,10 +1,15 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import {ItemsContext} from "../../contexts/ItemsContext"
 import "./AddItem.css"
 
-export default function AddItem({ addItem }) {
+
+export default function AddItem() {
 
   const [newItem, setNewItem] = useState("")
+
+  const {addItem} = useContext(ItemsContext);
+
   const handleValueChange = (event) => {
     setNewItem(event.target.value)
   }
